@@ -1,0 +1,51 @@
+@startuml
+interface PlayerState {
+  +play(Player player)
+  +stop(Player player)
+  +next(Player player)
+  +prev(Player player)
+}
+
+class Player {
+  -PlayerState state
+  -List<String> playlist
+  -int currentTrack
+  -boolean isPlaying
+  +setState(PlayerState state)
+  +setPlaying(boolean isPlaying)
+  +boolean isPlaying()
+  +startPlayback()
+  +nextTrack()
+  +previousTrack()
+  +play()
+  +stop()
+  +next()
+  +prev()
+}
+
+class ReadyState {
+  +play(Player player)
+  +stop(Player player)
+  +next(Player player)
+  +prev(Player player)
+}
+
+class PlayingState {
+  +play(Player player)
+  +stop(Player player)
+  +next(Player player)
+  +prev(Player player)
+}
+
+class LockedState {
+  +play(Player player)
+  +stop(Player player)
+  +next(Player player)
+  +prev(Player player)
+}
+
+PlayerState <|.. ReadyState
+PlayerState <|.. PlayingState
+PlayerState <|.. LockedState
+Player --> PlayerState
+@enduml
